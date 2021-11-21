@@ -4,7 +4,7 @@ import cors from "cors";
 import listEndpoints from "express-list-endpoints";
 import rowsRouter from "./models/rows/index.js";
 import questionRouter from "./models/questions/index.js";
-import { unAuthorizedHandler, notFoundErrorHandler, badRequestErrorHandler, forbiddenErrorHandler, catchAllErrorHandler } from "./errorHandlers.js";
+// import { unAuthorizedHandler, notFoundErrorHandler, badRequestErrorHandler, forbiddenErrorHandler, catchAllErrorHandler } from "./errorHandlers.js";
 
 const app = express();
 
@@ -14,11 +14,11 @@ app.use(express.json());
 app.use("/rows", rowsRouter);
 app.use("/questions", questionRouter);
 
-app.use(unAuthorizedHandler);
-app.use(notFoundErrorHandler);
-app.use(badRequestErrorHandler);
-app.use(forbiddenErrorHandler);
-app.use(catchAllErrorHandler);
+// app.use(unAuthorizedHandler);
+// app.use(notFoundErrorHandler);
+// app.use(badRequestErrorHandler);
+// app.use(forbiddenErrorHandler);
+// app.use(catchAllErrorHandler);
 
 const port = process.env.PORT;
 
