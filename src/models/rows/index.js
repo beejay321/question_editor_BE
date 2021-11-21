@@ -40,8 +40,11 @@ const upload = multer({ storage: cloudinaryStorage }).single("image");
 rowsRouter.post("/:id/uploadImage", upload, async (req, res, next) => {
   try {
     const row = await rowModel.findById(req.params.id);
-    row.image = req.file.path;
+    console.log("this is 1 row ", row);
+    row.images = req.file.path;
     await row.save();
+    console.log("this is 2 row ", row);
+
     res.send(row);
   } catch (error) {
     next(error);
