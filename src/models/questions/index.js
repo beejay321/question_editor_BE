@@ -1,15 +1,12 @@
 import express from "express";
-import multer from "multer";
-import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
-// import createError from "http-errors";
 import questionModel from "./schema.js";
 
 const questionRouter = express.Router();
 
 questionRouter.get("/", async (req, res, next) => {
   try {
-    
+    const question = await questionModel.find();
+    res.send(question);
   } catch (error) {
     console.log(error);
     next(error);
@@ -18,30 +15,16 @@ questionRouter.get("/", async (req, res, next) => {
 
 questionRouter.post("/", async (req, res, next) => {
   try {
-    
+    const newQuestion = new questionModel(req.body);
+    await newQuestion.save();
+    console.log(newQuestion);
+    res.send(newQuestion);
   } catch (error) {
     console.log(error);
     next(error);
   }
 });
 
-const cloudinaryStorage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: "Quantilope",
-  },
-});
 
-const upload = multer({ storage: cloudinaryStorage }).single("image");
-
-questionRouter.post("/:id/uploadImage", upload, async (req, res, next) => {
-  try {
-    
-  } catch (error) {
-    next(error);
-  }
-});
 
 export default questionRouter;
-
-
