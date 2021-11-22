@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import listEndpoints from "express-list-endpoints";
-import rowsRouter from "./models/rows/index.js";
+import imageRouter from "./models/images/index.js";
 import questionRouter from "./models/questions/index.js";
 // import { unAuthorizedHandler, notFoundErrorHandler, badRequestErrorHandler, forbiddenErrorHandler, catchAllErrorHandler } from "./errorHandlers.js";
 
@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/rows", rowsRouter);
+app.use("/images", imageRouter);
 app.use("/questions", questionRouter);
 
 // app.use(unAuthorizedHandler);
